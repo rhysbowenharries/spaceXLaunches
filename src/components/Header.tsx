@@ -1,7 +1,12 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useFonts } from "expo-font";
 
-export default function Header() {
+type Props = {
+  handlePress: () => void;
+};
+
+export default function Header({ handlePress }: Props) {
+  // Woud turn these into a util
   const [loaded] = useFonts({
     regular: require("../../assets/font/BrandonGrotesque-Black.ttf"),
     bold: require("../../assets/font/BrandonGrotesque-Bold.ttf"),
@@ -20,7 +25,7 @@ export default function Header() {
         />
         <Text style={styles.iconText}>LAUNCHES</Text>
       </View>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={handlePress}>
         <View style={styles.buttonContainer}>
           <Text style={styles.buttonText}>Reload Data</Text>
           <Image
@@ -33,6 +38,7 @@ export default function Header() {
   );
 }
 
+// lot of repeating style code, would like to make some constants
 const styles = StyleSheet.create({
   container: {
     marginTop: 60,
